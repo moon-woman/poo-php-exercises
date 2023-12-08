@@ -40,15 +40,17 @@
 
         public function ingreso($cantidad){
 
-            if ($cantidad < 0){
+            if ($cantidad > 0){
 
-                return false;
+                
+                $this->saldo+=$cantidad;
+                
+                return true;
 
             } else {
 
-                $this->saldo+=$cantidad;
+                return false;
 
-                return true;
             }
 
 
@@ -56,21 +58,24 @@
 
         public function retirar($cantidad){
 
-            if($this->saldo >= $cantidad){
+            if($this->saldo >= $cantidad && $cantidad > 0){
                 $this->saldo-=$cantidad;
                 return true;
-            } else if ($cantidad < $this->saldo || $cantidad <= 0){
+            } else {
                 return false;
             }
         }
 
 
-        public function transferir($origen, $destino, $cantidad){
+        public function transferir($destino, $cantidad){
 
 
-            if ($origen->saldo >= $cantidad){
-                $origen->saldo = $origen->saldo - $cantidad - (($cantidad * $origen->interes)/100);
+            if ($this->saldo >= $cantidad){
+                $this->saldo = $this->saldo - $cantidad - (($cantidad * $this->interes)/100);
                 $destino->saldo+=$cantidad;
+                return true;
+            } else {
+                return false;
             }
 
         }

@@ -19,10 +19,12 @@
         echo $cuenta1->__toString();
         echo "<br/><br/>";
         echo $cuenta2->__toString();
+        echo "<br/><br/>";
+        echo $cuenta3->__toString();
 
         echo "<br/><br/>";
 
-        echo "Ingresamos 50 en cada cuenta: <br/>";
+        echo "Ingresamos 50 en las dos primeras cuentas: <br/>";
 
         $cuenta1->ingreso(50);
         $cuenta2->ingreso(50);
@@ -33,7 +35,7 @@
 
         echo "<br/><br/>";
 
-        echo "Retiramos 120 en cada cuenta: <br/>";
+        echo "Retiramos 120 en las dos primeras cuentas: <br/>";
 
         $cuenta1->retirar(120);
         $cuenta2->retirar(120);
@@ -46,11 +48,59 @@
 
         echo "Hacemos una transferencia a Rocío: <br/>";
 
-        $cuenta3->transferir($cuenta2, $cuenta3, 10000);
+        $cuenta3->transferir($cuenta2, 10000);
 
         echo $cuenta3->__toString();
         echo "<br/><br/>";
         echo $cuenta2->__toString();
+
+
+        echo "<br/><br/>";
+
+        echo "Ingreso negativo: <br/>";
+
+        if(!$cuenta1->ingreso(-3000)){
+
+            echo "No se puede ingresar en negativo. <br/>";
+
+        } else {
+            echo $cuenta1->__toString();
+        }
+
+        echo "<br/><br/>";
+
+        echo "Retirada negativa: <br/>";
+
+        if(!$cuenta2->retirar(-2000)){
+            echo "No se puede retirar en negativo. <br/>";
+        } else {
+            echo $cuenta2->__toString();
+        }
+
+        echo "<br/><br/>";
+
+        echo "Retirada con saldo insuficiente: <br/>";
+
+        if(!$cuenta1->retirar(2000)){
+            echo "No tienes saldo suficiente. <br/>";
+        } else {
+            $cuenta1->__toString();
+        }
+
+        echo "<br/><br/>";
+
+        echo "Tranferencia con saldo insuficiente: <br/>";
+
+
+        if(!$cuenta1->transferir($cuenta2, 2000)){
+            echo "No tienes saldo suficiente para la transferencia <br/>";
+        } else {
+            $cuenta1->__toString();
+        }
+
+
+
+        
 
 
 
