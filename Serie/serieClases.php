@@ -21,7 +21,9 @@
 
         public function __construct($tituloSerie, $generoSerie, $creadorSerie, $numTemporadas = 3, $prestado = false){
 
-            $this->copiaId = self::aumentaId();
+            self::aumentaId();
+
+            $this->copiaId = self::$id;
             $this->tituloSerie = $tituloSerie;
             $this->numTemporadas = $numTemporadas;
             $this->prestado = $prestado;
@@ -32,9 +34,8 @@
 
         public static function aumentaId(){
 
-            self::$id++;
 
-            return self::$id;
+            return self::$id++;
         }
 
         public function __set($propiedad, $valor){

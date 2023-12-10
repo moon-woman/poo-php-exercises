@@ -12,7 +12,9 @@
 
         public function __construct($nombreLibro, $nombreAutor, $numEjemplares, $numPrestados){
 
-            $this->copiaId = self::aumentarId();
+
+            self::aumentarId();
+            $this->copiaId = self::$id;
             $this->nombreLibro = $nombreLibro;
             $this->nombreAutor = $nombreAutor;
             $this->numEjemplares = $numEjemplares;
@@ -22,9 +24,8 @@
 
         public static function aumentarId(){
 
-            self::$id++;
+            return self::$id++;
 
-            return self::$id;
         }
 
         public function __set($propiedad, $valor){
